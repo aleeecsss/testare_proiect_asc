@@ -9,7 +9,7 @@ Daca da OK pe toate cele 3 teste, asta inseamna ca cel mai probabil codul vostru
 # Cum functioneaza?
 
 - Pe scurt, va downloadati folder-ul teste_full. 
-- Salvati continutul folder-ului in folder-ul in care aveti proiectul.
+- Salvati continutul folder-ului teste_full in folder-ul in care aveti proiectul.
 - Executati urmatoarea comanda:
 ```
 chmod +x test_asm.sh
