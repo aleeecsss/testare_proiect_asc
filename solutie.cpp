@@ -29,7 +29,7 @@ void ADD() {
             }
         }
         if (ok == false) {
-            assert(false);
+            fout << "(0, 0)\n";
         }
     }
     return;
