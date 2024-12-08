@@ -1,5 +1,7 @@
 # testare_proiect_asc
 
+ATENTIE! Aceste teste sunt doar pentru cazul 1d.
+
 Mi-e destul de greu sa generez teste daca nu am restrictii / precizari clare la problema :(
 
 Asa, testele sunt generate in urmatorul mod:
