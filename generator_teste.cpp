@@ -25,7 +25,7 @@ void ADD() {
                 }
             }
         }
-        sz = rng() % (8 * (Max - 2 * n) - 9) + 8;
+        sz = rng() % (8 * (Max - 2 * n) - 9) + 9;
 
         fout << descriptor << " " << sz << "\n";
 
