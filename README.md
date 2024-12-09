@@ -25,7 +25,7 @@ sudo chmod +x test_asm.sh
 # Problema bidimensionala
 
 - Descarca folder-ul teste_2d.
-- Salezi continutul folder-ului instalat in folder-ul in care ai proiectul.
+- Salvezi continutul folder-ului instalat in folder-ul in care ai proiectul.
 - Executi urmatoarea comanda:
 ```
 sudo chmod +x test_asm.sh
