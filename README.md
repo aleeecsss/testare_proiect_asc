@@ -6,7 +6,7 @@ Mi-e destul de greu sa generez teste daca nu am restrictii / precizari clare la 
 
 Daca da OK pe toate testele, asta inseamna ca cel mai probabil codul tau e corect. (Am incercat sa generez testele cu diferite generatoare)
 
-# Cum functioneaza?
+# Cum functioneaza? + Informatii suplimentare
 
 - Pe scurt, va downloadati folder-ul teste_full. 
 - Salvati continutul folder-ului teste_full in folder-ul in care aveti proiectul.
