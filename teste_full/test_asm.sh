@@ -18,6 +18,26 @@ fi
 
 test_number=1
 
+compare_lines() {
+    local actual="$1"
+    local expected="$2"
+    local line_number=1
+    local actual_line=""
+    local expected_line=""
+    
+    while IFS= read -r actual_line && IFS= read -r expected_line <&3; do
+        actual_line=$(echo "$actual_line" | sed 's/[[:space:]]*$//')
+        expected_line=$(echo "$expected_line" | sed 's/[[:space:]]*$//')
+        
+        if [ "$actual_line" != "$expected_line" ]; then
+            echo "Difference found at line $line_number:"
+            echo "Expected: $expected_line"
+            echo "Actual:   $actual_line"
+            return
+        fi
+        ((line_number++))
+    done < "$actual" 3< "$expected"
+}
 
 for input_file in *.in; do
     expected_output="${input_file%.in}.ok"
@@ -37,6 +57,7 @@ for input_file in *.in; do
         echo "Test $test_number: OK"
     else
         echo "Test $test_number: WRONG_ANSWER"
+        compare_lines "$output_file" "$expected_output"
     fi
 
     rm "$output_file"
