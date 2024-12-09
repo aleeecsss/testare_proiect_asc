@@ -8,7 +8,7 @@ Daca da OK pe toate testele, asta inseamna ca cel mai probabil codul tau e corec
 
 # Cum functioneaza? + Informatii suplimentare
 
-- Daca vrei sa evaluezi sursa pentru problema 1d, descarci folder-ul teste_1d. Altfel, descarci folder-ul teste_2d.
+- Daca vrei sa evaluezi sursa pentru problema 1d, descarci folder-ul teste_full. Altfel, descarci folder-ul teste_2d.
 - Salezi continutul folder-ului instalat in folder-ul in care ai proiectul.
 - Executi urmatoarea comanda:
 ```
