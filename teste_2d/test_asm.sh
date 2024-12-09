@@ -1,12 +1,18 @@
 #!/bin/bash
 
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <program.s>"
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+    echo "Usage: $0 <program.s> [test_number]"
     exit 1
 fi
 
 program="$1"
 basename=$(basename "$program" .s)
+
+if [ "$#" -eq 2 ]; then
+    test_number_to_run="$2"
+else
+    test_number_to_run=-1
+fi
 
 echo "Compiling assembly program..."
 gcc -m32 "$program" -o "$basename" 
@@ -15,8 +21,6 @@ if [ $? -ne 0 ]; then
     echo "Compilation failed!"
     exit 1
 fi
-
-test_number=1
 
 compare_lines() {
     local actual="$1"
@@ -39,7 +43,13 @@ compare_lines() {
     done < "$actual" 3< "$expected"
 }
 
+test_number=1
 for input_file in *.in; do
+    if [ "$test_number_to_run" -ne -1 ] && [ "$test_number" -ne "$test_number_to_run" ]; then
+        ((test_number++))
+        continue
+    fi
+    
     expected_output="${input_file%.in}.ok"
     output_file="${basename}_output.txt"
     
