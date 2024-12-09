@@ -1,6 +1,7 @@
 # testare_proiect_asc
 
 ATENTIE! Aceste teste sunt doar pentru cazul 1d.
+ATENTIE! Inainte de a va testa codul, asigurati-va ca dati flush dupa fiecare printf.
 
 Mi-e destul de greu sa generez teste daca nu am restrictii / precizari clare la problema :(
 
