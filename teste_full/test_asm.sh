@@ -64,9 +64,9 @@ for input_file in *.in; do
     expected_output_cleaned=$(cat "$expected_output" | sed 's/[[:space:]]*$//')
 
     if [ "$actual_output" == "$expected_output_cleaned" ]; then
-        echo "Test $test_number: OK"
+        echo -e "\033[32mTest $test_number: OK\033[0m"
     else
-        echo "Test $test_number: WRONG_ANSWER"
+        echo -e "\033[31mTest $test_number: WRONG_ANSWER\033[0m"
         compare_lines "$output_file" "$expected_output"
     fi
 
