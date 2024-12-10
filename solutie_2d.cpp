@@ -145,7 +145,7 @@ void DEFRAGMENTATION() {
                 int x = mat[qx][qy];
                 mat[qx][qy] = 0;
                 mat[px][py] = x;
-                ++ py;
+                ++py;
             }
         }
     }
