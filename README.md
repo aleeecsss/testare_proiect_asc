@@ -9,7 +9,7 @@ Daca da OK pe toate testele, asta inseamna ca cel mai probabil codul tau e corec
 # Problema unidimensionala
 
 - Descarca folder-ul teste_full.
-- Salezi continutul folder-ului instalat in folder-ul in care ai proiectul.
+- Salvezi continutul folder-ului instalat in folder-ul in care ai proiectul.
 - Executi urmatoarea comanda:
 ```
 sudo chmod +x test_asm.sh
