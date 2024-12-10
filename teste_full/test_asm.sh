@@ -57,8 +57,8 @@ for input_file in *.in; do
         echo "Missing expected output file: $expected_output"
         continue
     fi
-
-    ./"$basename" < "$input_file" > "$output_file"
+	cat $input_file > input.txt
+    ./"$basename" > "$output_file"
 
     actual_output=$(cat "$output_file" | sed 's/[[:space:]]*$//')
     expected_output_cleaned=$(cat "$expected_output" | sed 's/[[:space:]]*$//')
