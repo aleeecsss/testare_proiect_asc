@@ -29,7 +29,7 @@ void ADD() {
             }
         }
         if (ok == false) {
-            fout << "(0, 0)\n";
+            fout << descriptor << ": " << "(0, 0)\n";
         }
     }
     return;
