@@ -39,7 +39,7 @@ void ADD() {
             }
         }
 
-        fout << "((0, 0), (0, 0))\n";
+        fout << descriptor << ": " << "((0, 0), (0, 0))\n";
         continue;
 
         foundInterval: {}
