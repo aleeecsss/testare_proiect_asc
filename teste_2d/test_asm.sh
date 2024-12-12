@@ -1,51 +1,5 @@
 #!/bin/bash
 
-generate_random_number() {
-    local num1=$((RANDOM % 2890 + 92))
-    local num2=$((RANDOM % 2890 + 92))
-    echo $((num1 * num2))
-}
-generate_random_string() {
-    local length=$1
-    tr -dc 'a-zA-Z' </dev/urandom | head -c "$length"
-}
-
-folder_paths=()
-
-current_dir=$(pwd)
-
-for i in $(seq 1 10); do
-    folder_name=$(generate_random_string 10)
-  
-    mkdir "$folder_name"
-
-    folder_paths+=("$current_dir/$folder_name")
-
-    num_files=$((2 + RANDOM % 49))
-
-    for j in $(seq 1 "$num_files"); do
-        file_name=$(generate_random_string 10).txt
-    
-        file_size=$(generate_random_number)
-
-        if [ "$file_size" -lt 9216 ]; then
-            file_size=9216
-        fi
-
-        if [ "$file_size" -gt 8388608 ]; then
-            file_size=8388608
-        fi
-
-        truncate -s "$file_size" "$folder_name/$file_name"
-    done
-done
-
-g++ -o generator generator.cpp
-g++ -o solutie solutie.cpp
-
-./generator "${folder_paths[@]}"
-./solutie < 7.in > 7.ok
-
 if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
     echo "Usage: $0 <program.s> [test_number]"
     exit 1
@@ -121,5 +75,4 @@ for input_file in *.in; do
     ((test_number++))
 done
 
-rm -rf "${folder_paths[@]}"
 rm "$basename"
