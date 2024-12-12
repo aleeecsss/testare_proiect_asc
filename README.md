@@ -42,5 +42,5 @@ sudo chmod +x test_asm.sh
 ```
 ./test_asm.sh {numele_proiectului_vostru}.s {nr_test}
 ```
-- Apoi, vei primi verdictul pentru fiecare test (OK sau WRONG_ANSWER). Daca da OK pe toate testele, inseamna ca ai scris corect operatiile ADD, GET, DELETE, DEFRAGMENTATION si CONCRETE si vei obtine (cel mai probabil) punctaj maxim la evaluarea finala.
-- Testele 1-3 contin toate tipurile de operatii (ADD, GET, DELETE, DEFRAGMENTATION). Testele 4-5 contin doar 3 tipuri de operatii (ADD, GET, DELETE). Testul 6 contine doar operatia ADD. Testul 7 se compune intr-o maniera dinamica (pentru mai multe informatii, uita-te pe discord) si contine toate operatiile: ADD, GET, DELETE, DEFRAGMENTATION si CONCRETE.
+- Apoi, vei primi verdictul pentru fiecare test (OK sau WRONG_ANSWER). Daca da OK pe toate testele, inseamna ca ai scris corect operatiile ADD, GET, DELETE, DEFRAGMENTATION si vei obtine (cel mai probabil) 3 puncte din 5 la evaluarea finala.
+- Testele 1-3 contin toate tipurile de operatii (ADD, GET, DELETE, DEFRAGMENTATION). Testele 4-5 contin doar 3 tipuri de operatii (ADD, GET, DELETE). Testul 6 contine doar operatia ADD.
