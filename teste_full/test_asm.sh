@@ -47,35 +47,37 @@ test_number=1
 all_tests_passed=true
 
 for input_file in *.in; do
-    if [ "$test_number_to_run" -ne -1 ] && [ "$test_number" -ne "$test_number_to_run" ]; then
+    if [[ "$input_file" =~ [0-9] ]]; then
+        if [ "$test_number_to_run" -ne -1 ] && [ "$test_number" -ne "$test_number_to_run" ]; then
+            ((test_number++))
+            continue
+        fi
+        
+        expected_output="${input_file%.in}.ok"
+        output_file="${basename}_output.txt"
+        
+        if [ ! -f "$expected_output" ]; then
+            echo "Missing expected output file: $expected_output"
+            continue
+        fi
+    
+        ./"$basename" < "$input_file" > "$output_file"
+    
+        actual_output=$(cat "$output_file" | sed 's/[[:space:]]*$//')
+        expected_output_cleaned=$(cat "$expected_output" | sed 's/[[:space:]]*$//')
+    
+        if [ "$actual_output" == "$expected_output_cleaned" ]; then
+            echo -e "\033[32mTest $test_number: OK\033[0m"
+        else
+            echo -e "\033[31mTest $test_number: WRONG_ANSWER\033[0m"
+            compare_lines "$output_file" "$expected_output"
+            all_tests_passed=false
+        fi
+    
+        rm "$output_file"
+        
         ((test_number++))
-        continue
     fi
-    
-    expected_output="${input_file%.in}.ok"
-    output_file="${basename}_output.txt"
-    
-    if [ ! -f "$expected_output" ]; then
-        echo "Missing expected output file: $expected_output"
-        continue
-    fi
-
-    ./"$basename" < "$input_file" > "$output_file"
-
-    actual_output=$(cat "$output_file" | sed 's/[[:space:]]*$//')
-    expected_output_cleaned=$(cat "$expected_output" | sed 's/[[:space:]]*$//')
-
-    if [ "$actual_output" == "$expected_output_cleaned" ]; then
-        echo -e "\033[32mTest $test_number: OK\033[0m"
-    else
-        echo -e "\033[31mTest $test_number: WRONG_ANSWER\033[0m"
-        compare_lines "$output_file" "$expected_output"
-        all_tests_passed=false
-    fi
-
-    rm "$output_file"
-    
-    ((test_number++))
 done
 
 index=1
