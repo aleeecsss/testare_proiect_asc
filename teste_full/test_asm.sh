@@ -44,6 +44,8 @@ compare_lines() {
 }
 
 test_number=1
+all_tests_passed=true
+
 for input_file in *.in; do
     if [ "$test_number_to_run" -ne -1 ] && [ "$test_number" -ne "$test_number_to_run" ]; then
         ((test_number++))
@@ -68,11 +70,44 @@ for input_file in *.in; do
     else
         echo -e "\033[31mTest $test_number: WRONG_ANSWER\033[0m"
         compare_lines "$output_file" "$expected_output"
+        all_tests_passed=false
     fi
 
     rm "$output_file"
     
     ((test_number++))
 done
+
+index=1
+
+if [ "$all_tests_passed" == true ]; then
+    echo -e "\033[32mAll pre-existing tests passed! Proceeding with stress testing...\033[0m"
+    
+    while true; do
+        g++ -o generator generator.cpp
+        ./generator > stress_test.in
+
+        g++ -o solutie solutie.cpp
+        ./solutie < stress_test.in > stress_test.ok
+
+        ./"$basename" < stress_test.in > stress_test.out
+
+        actual_output=$(cat stress_test.out | sed 's/[[:space:]]*$//')
+        expected_output=$(cat stress_test.ok | sed 's/[[:space:]]*$//')
+
+        if [ "$actual_output" == "$expected_output" ]; then
+            echo -e "\033[32mStress Test $index: OK\033[0m"
+        else
+            echo -e "\033[31mStress Test $index: WRONG_ANSWER\033[0m"
+            compare_lines "stress_test.out" "stress_test.ok"
+            exit
+        fi
+
+        ((index++))
+        rm generator solutie
+    done
+else
+    echo -e "\033[31mSome pre-existing tests failed. Stress test skipped.\033[0m"
+fi
 
 rm "$basename"
