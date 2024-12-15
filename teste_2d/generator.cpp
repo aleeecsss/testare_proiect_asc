@@ -38,11 +38,11 @@ void ADD() {
 
         std::cout << descriptor << " " << sz << "\n";
 
-        sz = (sz + 7) / 8;
-
         if (sz < 9) {
             continue;
         }
+    
+        sz = (sz + 7) / 8;
 
         for (int j = 0; j < N; ++j) {
             int combo = 0;
