@@ -54,7 +54,7 @@ for input_file in *.in; do
         fi
         
         expected_output="${input_file%.in}.ok"
-        output_file="${basename}_output.txt"
+        output_file="${input_file%.in}.out"
         
         if [ ! -f "$expected_output" ]; then
             echo "Missing expected output file: $expected_output"
@@ -73,8 +73,6 @@ for input_file in *.in; do
             compare_lines "$output_file" "$expected_output"
             all_tests_passed=false
         fi
-
-        rm "$output_file"
         
         ((test_number++))
     fi

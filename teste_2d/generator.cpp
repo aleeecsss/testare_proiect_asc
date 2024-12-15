@@ -34,7 +34,7 @@ void ADD() {
 
         d = rng() % Free + 1;
         descriptor = getDthElement(d, 1);
-        sz = rng() % (8 * (N / 2) - 8) + 9;
+        sz = rng() % (8 * (N / 2)) + 1;
 
         std::cout << descriptor << " " << sz << "\n";
 

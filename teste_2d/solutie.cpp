@@ -13,6 +13,10 @@ void ADD() {
 
         sz = (sz + 7) / 8;
 
+        if (sz < 9) {
+            continue;
+        }
+
         for (int j = 0; j < N; ++j) {
             int combo = 0;
             for (int k = 0; k < N; ++k) {
@@ -21,8 +25,6 @@ void ADD() {
 
                     if (combo == sz) {
                         k = k - sz + 1;
-                        std::cout << descriptor << ": ";
-                        std::cout << "((" << j << ", " << k << "), " << "(" << j << ", " << k + sz - 1 << "))\n";
 
                         for (int l = k; l < k + sz; ++l) {
                             mat[j][l] = descriptor;
@@ -38,10 +40,25 @@ void ADD() {
             }
         }
 
-        std::cout << descriptor << ": " << "((0, 0), (0, 0))\n";
-        continue;
-
         foundInterval: {}
+    }
+
+    for (int i = 0; i < N; ++i) {
+        int x = N, y = 0;
+
+        for (int j = 0; j < N; ++j) {
+            if (mat[i][j] && mat[i][j + 1] == mat[i][j]) {
+                x = std::min(x, j);
+                y = std::max(y, j);
+            } else if (mat[i][j]) {
+                x = std::min(x, j);
+                y = std::max(y, j);
+
+                std::cout << mat[i][j] << ": " << "((" << i << ", " << x << "), " << "(" << i << ", " << y << "))\n";
+
+                x = N, y = 0;
+            }
+        }
     }
 
     return;
