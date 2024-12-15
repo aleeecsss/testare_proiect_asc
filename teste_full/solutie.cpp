@@ -3,10 +3,15 @@
 const int N = 1024;
 int n, Q, descriptor, sz, x, y, p, q, v[N];
 
+void GET(int w);
+
 void ADD() {
     std::cin >> n;
     while (n --) {
         std::cin >> descriptor >> sz;
+        if (sz < 9) {
+            continue;
+        }
         sz = (sz + 7) / 8;
         bool ok = true;
         for (int i = 0; i < N - sz + 1; ++i) {
@@ -21,21 +26,24 @@ void ADD() {
                 for (int j = i; j < i + sz; ++j) {
                     v[j] = descriptor;
                 }
-                std::cout << descriptor << ": " << "(" << i << ", " << i + sz - 1 << ")\n";
                 break;
             }
         }
-        if (ok == false) {
-            std::cout << descriptor << ": " << "(0, 0)\n";
+    }
+    for (int i = 0; i < N; ++i) {
+        if (v[i] != 0) {
+            std::cout << v[i] << ": ";
+            GET(v[i]);
+            i = y;
         }
     }
     return;
 }
 
-void GET(int descriptor) {
+void GET(int w) {
     x = N, y = 0;
     for (int i = 0; i < N; ++i) {
-        if (v[i] == descriptor) {
+        if (v[i] == w) {
             x = std::min(x, i);
             y = std::max(y, i);
         }
