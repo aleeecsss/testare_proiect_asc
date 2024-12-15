@@ -40,6 +40,10 @@ void ADD() {
 
         sz = (sz + 7) / 8;
 
+        if (sz < 9) {
+            continue;
+        }
+
         for (int j = 0; j < N; ++j) {
             int combo = 0;
             for (int k = 0; k < N; ++k) {
