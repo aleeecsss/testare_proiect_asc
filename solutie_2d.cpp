@@ -1,15 +1,18 @@
 #include <bits/stdc++.h>
 
 const int N = 1024, D = 256;
-int Q, mat[N][N + 1], cnt, w[D], f[D];
+int Q, mat[N][N + 1], cnt, w[D];
+
+std::ifstream fin("input.txt");
+std::ofstream fout("output.txt");
 
 void ADD() {
     int n;
-    std::cin >> n;
+    fin >> n;
 
     for (int i = 0; i < n; ++i) {
         int descriptor, sz;
-        std::cin >> descriptor >> sz;
+        fin >> descriptor >> sz;
 
         sz = (sz + 7) / 8;
 
@@ -21,14 +24,12 @@ void ADD() {
 
                     if (combo == sz) {
                         k = k - sz + 1;
-                        std::cout << descriptor << ": ";
-                        std::cout << "((" << j << ", " << k << "), " << "(" << j << ", " << k + sz - 1 << "))\n";
+                        fout << descriptor << ": ";
+                        fout << "((" << j << ", " << k << "), " << "(" << j << ", " << k + sz - 1 << "))\n";
 
                         for (int l = k; l < k + sz; ++l) {
                             mat[j][l] = descriptor;
                         }
-
-                        f[descriptor] = true;
 
                         goto foundInterval;
                     }
@@ -38,7 +39,7 @@ void ADD() {
             }
         }
 
-        std::cout << descriptor << ": " << "((0, 0), (0, 0))\n";
+        fout << descriptor << ": " << "((0, 0), (0, 0))\n";
         continue;
 
         foundInterval: {}
@@ -59,19 +60,18 @@ void GET(int descriptor) {
         }
 
         if (x != N) {
-            std::cout << "((" << i << ", " << x << "), " << "(" << i << ", " << y << "))\n";
+            fout << "((" << i << ", " << x << "), " << "(" << i << ", " << y << "))\n";
             return;
         }
     }
 
-    std::cout << "((0, 0), (0, 0))\n";
+    fout << "((0, 0), (0, 0))\n";
     return;
 }
 
 void DELETE() {
     int descriptor;
-    std::cin >> descriptor;
-    f[descriptor] = false;
+    fin >> descriptor;
 
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
@@ -92,7 +92,7 @@ void DELETE() {
                 x = std::min(x, j);
                 y = std::max(y, j);
 
-                std::cout << mat[i][j] << ": " << "((" << i << ", " << x << "), " << "(" << i << ", " << y << "))\n";
+                fout << mat[i][j] << ": " << "((" << i << ", " << x << "), " << "(" << i << ", " << y << "))\n";
 
                 x = N, y = 0;
             }
@@ -163,7 +163,7 @@ void DEFRAGMENTATION() {
                 x = std::min(x, j);
                 y = std::max(y, j);
 
-                std::cout << mat[i][j] << ": " << "((" << i << ", " << x << "), " << "(" << i << ", " << y << "))\n";
+                fout << mat[i][j] << ": " << "((" << i << ", " << x << "), " << "(" << i << ", " << y << "))\n";
 
                 x = N, y = 0;
             }
@@ -174,12 +174,12 @@ void DEFRAGMENTATION() {
 }
 
 int main() {
-    std::cin >> Q;
+    fin >> Q;
 
     while (Q --) {
         int type;
 
-        std::cin >> type;
+        fin >> type;
 
         if (type == 1) {
             ADD();
@@ -187,7 +187,7 @@ int main() {
 
         if (type == 2) {
             int descriptor;
-            std::cin >> descriptor;
+            fin >> descriptor;
             GET(descriptor);
         }
 
@@ -199,8 +199,6 @@ int main() {
             DEFRAGMENTATION();
         }
     }
-
-    std::cout.flush();
 
     return 0;
 }
