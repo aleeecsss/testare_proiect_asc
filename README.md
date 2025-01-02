@@ -1,6 +1,7 @@
 # testare_proiect_asc
 
 ATENTIE! Inainte de a va testa codul, asigurati-va ca dati flush dupa fiecare printf.
+ATENTIE! NU este considerat cazul cand size_kb > 8192. Sa va adaptati solutia sa considere acest caz pentru evaluatorul laborantilor!
 
 Mi-e destul de greu sa generez teste daca nu am restrictii / precizari clare la problema :(
 
